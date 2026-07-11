@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 1.3 seconds
-Output:
 const FocusCore = window.SpeedReaderCore;
 
 const storedPayload = localStorage.getItem("speedReaderFocusPayload");
@@ -141,4 +138,3 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") moveFocus(-1);
   if (event.key === "ArrowRight") moveFocus(1);
 });
-

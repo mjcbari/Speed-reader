@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 1.3 seconds
-Output:
 const Core = window.SpeedReaderCore;
 
 const elements = {
@@ -64,7 +61,7 @@ function enforceWordLimit() {
   const result = Core.limitTextToWords(elements.sourceText.value);
   if (result.trimmed) {
     elements.sourceText.value = result.text;
-    showMessage("Text was trimmed to the 1000 word limit.");
+    showMessage(`Text was trimmed to the ${Core.MAX_WORDS} word limit.`);
   } else {
     showMessage("");
   }
@@ -364,4 +361,3 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") moveByUnits(-1);
   if (event.key === "ArrowRight") moveByUnits(1);
 });
-

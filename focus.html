@@ -1,0 +1,71 @@
+Exit code: 0
+Wall time: 1.2 seconds
+Output:
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Speed Reader Focus</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="focus-page">
+    <main class="focus-shell">
+      <header class="focus-top">
+        <h1>Focus Reader</h1>
+        <div class="stat-strip" aria-live="polite">
+          <span><strong id="focusWpm">300</strong> wpm</span>
+          <span><strong id="focusMode">Word</strong></span>
+          <span><strong id="focusProgress">0%</strong></span>
+        </div>
+      </header>
+
+      <section class="reader-stage focus-stage" id="focusStage" aria-live="polite" aria-atomic="true">
+        <div class="focus-line" aria-hidden="true"></div>
+        <p id="focusText">Ready?</p>
+      </section>
+
+      <div class="reader-controls focus-controls" aria-label="Focus playback controls">
+        <button class="icon-button" type="button" id="focusBackButton" aria-label="Previous">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 7 5 12l6 5V7Zm8 0-6 5 6 5V7Z"></path>
+          </svg>
+        </button>
+        <button class="play-button" type="button" id="focusPlayButton" aria-label="Start reading">
+          <svg viewBox="0 0 24 24" aria-hidden="true" id="focusPlayIcon">
+            <path d="M8 5v14l11-7L8 5Z"></path>
+          </svg>
+          <span id="focusPlayText">Start</span>
+        </button>
+        <button class="icon-button" type="button" id="focusForwardButton" aria-label="Next">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m13 7 6 5-6 5V7ZM5 7l6 5-6 5V7Z"></path>
+          </svg>
+        </button>
+        <button class="icon-button" type="button" id="focusResetButton" aria-label="Reset">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7.8 7.8A6 6 0 1 1 6 12H3.7A8.3 8.3 0 1 0 6 6.2V3H3v7h7V7H6.9l.9.8Z"></path>
+          </svg>
+        </button>
+        <button class="focus-button" type="button" id="fullscreenButton" aria-label="Fullscreen">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9V4h5v2H6v3H4Zm14 0V6h-3V4h5v5h-2ZM4 15h2v3h3v2H4v-5Zm14 3v-3h2v5h-5v-2h3Z"></path>
+          </svg>
+          <span>Fullscreen</span>
+        </button>
+      </div>
+
+      <div class="progress-wrap focus-progress" aria-label="Focus progress">
+        <div class="progress-bar">
+          <div id="focusProgressFill"></div>
+        </div>
+        <p id="focusPosition">Word 0 of 0</p>
+      </div>
+    </main>
+
+    <script src="reader-core.js"></script>
+    <script src="focus.js"></script>
+  </body>
+</html>
+

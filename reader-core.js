@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 1.1 seconds
-Output:
 (function () {
   const MAX_WORDS = 10000;
 
@@ -158,4 +155,3 @@ Kids can use a bigger font and fewer words at once. Older readers can try two, t
     modeLabel
   };
 })();
-

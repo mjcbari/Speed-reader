@@ -1,0 +1,163 @@
+Exit code: 0
+Wall time: 2 seconds
+Output:
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Speed Reader</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="reader-hero" aria-label="Speed reader">
+        <div class="reader-status">
+          <div>
+            <h1>Speed Reader</h1>
+          </div>
+          <div class="stat-strip" aria-live="polite">
+            <span><strong id="currentWpm">300</strong> wpm</span>
+            <span><strong id="currentChunk">1</strong> <span id="chunkLabel">word</span></span>
+            <span><strong id="currentMode">Word</strong></span>
+            <span><strong id="currentProgress">0%</strong></span>
+          </div>
+        </div>
+
+        <div class="reader-stage" id="readerStage" aria-live="polite" aria-atomic="true">
+          <div class="focus-line" aria-hidden="true"></div>
+          <p id="displayText">Ready?</p>
+        </div>
+
+        <div class="reader-controls" aria-label="Playback controls">
+          <button class="icon-button" type="button" id="backButton" aria-label="Previous words">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M11 7 5 12l6 5V7Zm8 0-6 5 6 5V7Z"></path>
+            </svg>
+          </button>
+          <button class="play-button" type="button" id="playButton" aria-label="Start reading">
+            <svg viewBox="0 0 24 24" aria-hidden="true" id="playIcon">
+              <path d="M8 5v14l11-7L8 5Z"></path>
+            </svg>
+            <span id="playButtonText">Start</span>
+          </button>
+          <button class="icon-button" type="button" id="forwardButton" aria-label="Next words">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m13 7 6 5-6 5V7ZM5 7l6 5-6 5V7Z"></path>
+            </svg>
+          </button>
+          <button class="icon-button" type="button" id="resetButton" aria-label="Reset to beginning">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.8 7.8A6 6 0 1 1 6 12H3.7A8.3 8.3 0 1 0 6 6.2V3H3v7h7V7H6.9l.9.8Z"></path>
+            </svg>
+          </button>
+          <button class="focus-button" type="button" id="focusButton" aria-label="Open focus reading window">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9V4h5v2H6v3H4Zm14 0V6h-3V4h5v5h-2ZM4 15h2v3h3v2H4v-5Zm14 3v-3h2v5h-5v-2h3Z"></path>
+            </svg>
+            <span>Focus</span>
+          </button>
+        </div>
+
+        <div class="progress-wrap" aria-label="Reading progress">
+          <div class="progress-bar">
+            <div id="progressFill"></div>
+          </div>
+          <p id="positionText">Word 0 of 0</p>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Reader settings and text">
+        <form class="settings-panel" id="settingsForm">
+          <fieldset class="control-group mode-group">
+            <legend>Reading mode</legend>
+            <div class="segmented" role="radiogroup" aria-label="Reading mode">
+              <label>
+                <input type="radio" name="readingMode" value="word" checked>
+                <span>Word</span>
+              </label>
+              <label>
+                <input type="radio" name="readingMode" value="phrase">
+                <span>Phrase</span>
+              </label>
+              <label>
+                <input type="radio" name="readingMode" value="sentence">
+                <span>Sentence</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="control-group">
+            <label for="wpmRange">Speed limit</label>
+            <div class="range-row">
+              <input type="range" id="wpmRange" min="50" max="1000" step="10" value="300">
+              <input type="number" id="wpmInput" min="50" max="1000" step="10" value="300" aria-label="Words per minute">
+              <span>wpm</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="chunkRange">Words shown at once</label>
+            <div class="range-row">
+              <input type="range" id="chunkRange" min="1" max="10" step="1" value="1">
+              <input type="number" id="chunkInput" min="1" max="10" step="1" value="1" aria-label="Words shown at once">
+              <span>words</span>
+            </div>
+          </div>
+
+          <div class="control-grid">
+            <label>
+              <span>Background</span>
+              <input type="color" id="backgroundColor" value="#000000">
+            </label>
+            <label>
+              <span>Text color</span>
+              <input type="color" id="textColor" value="#ffffff">
+            </label>
+            <label>
+              <span>Font</span>
+              <select id="fontSelect">
+                <option value="Inter, Arial, sans-serif">Inter</option>
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="'Comic Sans MS', 'Comic Sans', cursive">Comic Sans</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="'Trebuchet MS', sans-serif">Trebuchet</option>
+                <option value="'Courier New', monospace">Courier New</option>
+              </select>
+            </label>
+            <label>
+              <span>Text size</span>
+              <select id="fontSizeSelect">
+                <option value="clamp(2.7rem, 8vw, 6rem)">Large</option>
+                <option value="clamp(2rem, 6vw, 4.5rem)">Medium</option>
+                <option value="clamp(1.5rem, 4vw, 3rem)">Small</option>
+              </select>
+            </label>
+          </div>
+        </form>
+
+        <section class="text-panel" aria-label="Text to read">
+          <div class="text-head">
+            <label for="sourceText">Paste text to speed read</label>
+            <div class="text-actions">
+              <button class="text-button" type="button" id="pasteButton">Paste</button>
+              <button class="text-button" type="button" id="uploadButton">Upload</button>
+              <button class="text-button" type="button" id="sampleButton">Use sample</button>
+            </div>
+          </div>
+          <input class="visually-hidden" type="file" id="fileInput" accept=".txt,.text,text/plain,.pdf,application/pdf">
+          <textarea id="sourceText" spellcheck="true"></textarea>
+          <div class="text-footer">
+            <p id="textStats">0 characters | 0 words | 1000 words remaining</p>
+            <p id="limitMessage" role="status"></p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="reader-core.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+

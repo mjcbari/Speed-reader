@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 2.1 seconds
-Output:
 :root {
   --page: #f3f7fb;
   --ink: #111827;
@@ -568,4 +565,3 @@ textarea {
     animation-iteration-count: 1 !important;
   }
 }
-
